@@ -4,10 +4,24 @@ Module for fetching student enrolment data in Hong Kong primary schools.
 This module provides tools to retrieve and process student enrolment data by district and grade from the Education Bureau.
 """
 
-import requests
 import csv
 from io import StringIO
 from typing import List, Dict
+import requests
+
+
+def register(mcp):
+    """Registers the primary schools enrolment tool with the FastMCP server."""
+    @mcp.tool(
+        description="Student enrolment in primary schools by district and grade in Hong Kong from Education Bureau"
+    )
+    def get_student_enrolment_by_district() -> List[Dict]:
+        """Get student enrolment in primary schools by district and grade in Hong Kong
+
+        Returns:
+            List of dictionaries containing enrolment data by district and grade
+        """
+        return _get_student_enrolment_by_district()
 
 
 def fetch_student_enrolment_data() -> List[Dict]:
@@ -24,7 +38,7 @@ def fetch_student_enrolment_data() -> List[Dict]:
     return data
 
 
-def get_student_enrolment_by_district() -> List[Dict]:
+def _get_student_enrolment_by_district() -> List[Dict]:
     """Get student enrolment in primary schools by district and grade in Hong Kong
 
     Returns:

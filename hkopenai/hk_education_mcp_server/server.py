@@ -4,22 +4,15 @@ Module for creating and running the HK OpenAI Education MCP Server.
 This module provides functionality to set up and run an MCP server with tools for educational data in Hong Kong.
 """
 
-import argparse
 from fastmcp import FastMCP
 from hkopenai.hk_education_mcp_server import tool_primary_schools_enrolment
-from typing import Dict, List, Annotated, Optional
-from pydantic import Field
 
 
 def create_mcp_server():
     """Create and configure the MCP server"""
     mcp = FastMCP(name="HK OpenAI education Server")
 
-    @mcp.tool(
-        description="Student enrolment in primary schools by district and grade in Hong Kong from Education Bureau"
-    )
-    def get_student_enrolment_by_district() -> List[Dict]:
-        return tool_primary_schools_enrolment.get_student_enrolment_by_district()
+    tool_primary_schools_enrolment.register(mcp)
 
     return mcp
 
