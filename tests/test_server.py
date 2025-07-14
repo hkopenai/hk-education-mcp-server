@@ -6,14 +6,14 @@ This module contains unit tests for the server creation functionality of the MCP
 
 import unittest
 from unittest.mock import patch, Mock
-from hkopenai.hk_education_mcp_server.server import create_mcp_server
+from hkopenai.hk_education_mcp_server.server import server
 
 
 class TestApp(unittest.TestCase):
     """Class for testing the MCP server application."""
     @patch("hkopenai.hk_education_mcp_server.server.FastMCP")
     @patch("hkopenai.hk_education_mcp_server.tool_primary_schools_enrolment.register")
-    def test_create_mcp_server(self, mock_register, mock_fastmcp):
+    def test_server(self, mock_register, mock_fastmcp):
         """
         Test the creation of the MCP server and tool registration.
 
@@ -29,7 +29,7 @@ class TestApp(unittest.TestCase):
         mock_fastmcp.return_value = mock_server
 
         # Test server creation
-        create_mcp_server()
+        server()
 
         # Verify server creation
         mock_fastmcp.assert_called_once()

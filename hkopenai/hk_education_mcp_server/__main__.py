@@ -4,8 +4,6 @@ Module for running the HK OpenAI Education MCP Server.
 This module serves as the entry point to start the MCP server.
 """
 
-
-
 from hkopenai_common.cli_utils import cli_main
 from .server import server
 

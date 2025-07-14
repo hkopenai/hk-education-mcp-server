@@ -7,27 +7,10 @@ This module provides functionality to set up and run an MCP server with tools fo
 from fastmcp import FastMCP
 from hkopenai.hk_education_mcp_server import tool_primary_schools_enrolment
 
-
-def create_mcp_server():
+def server():
     """Create and configure the MCP server"""
     mcp = FastMCP(name="HK OpenAI education Server")
 
     tool_primary_schools_enrolment.register(mcp)
 
     return mcp
-
-
-def main(args):
-    """Parse command line arguments and run the MCP server in the specified mode."""
-    server = create_mcp_server()
-
-    if args.sse:
-        server.run(transport="streamable-http", host=args.host, port=args.port)
-        print(f"MCP Server running in SSE mode on port {args.port}, bound to {args.host}")
-    else:
-        server.run()
-        print("MCP Server running in stdio mode")
-
-
-if __name__ == "__main__":
-    main()
