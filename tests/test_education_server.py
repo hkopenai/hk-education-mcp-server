@@ -11,8 +11,9 @@ from hkopenai.hk_education_mcp_server.server import server
 
 class TestApp(unittest.TestCase):
     """Class for testing the MCP server application."""
+
     @patch("hkopenai.hk_education_mcp_server.server.FastMCP")
-    @patch("hkopenai.hk_education_mcp_server.tool_primary_schools_enrolment.register")
+    @patch("hkopenai.hk_education_mcp_server.tools.primary_schools_enrolment.register")
     def test_server(self, mock_register, mock_fastmcp):
         """
         Test the creation of the MCP server and tool registration.
