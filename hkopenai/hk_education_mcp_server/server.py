@@ -5,7 +5,7 @@ This module provides functionality to set up and run an MCP server with tools fo
 """
 
 from fastmcp import FastMCP
-from hkopenai.hk_education_mcp_server.tools import primary_schools_enrolment
+from .tools import primary_schools_enrolment
 
 
 def server():
